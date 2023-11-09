@@ -1,0 +1,19 @@
+{
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "Compilar e executar",
+			"command": "/usr/bin/g++",
+			"args": ["-fdiagnostics-color=always", "-Wno-ignored-attributes", "-g", "${file}", "-o", "${workspaceRoot}/out/${fileBasenameNoExtension}"],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": ["$gcc"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	],
+	"version": "2.0.0"
+}
