@@ -1,6 +1,5 @@
 import pyopencl as cl
 import numpy as np
-import sys
 
 kernel_str = """
 __kernel void raiz(__global const float *x, __global float *y) {
@@ -10,11 +9,11 @@ __kernel void raiz(__global const float *x, __global float *y) {
 """
 
 def main():
-    if len(sys.argv) != 2:
-        print("Uso: python script.py <elementos>")
-        sys.exit(1)
+    # if len(sys.argv) != 2:
+    #     print("Uso: python script.py <elementos>")
+    #     sys.exit(1)
 
-    elementos = int(sys.argv[1])
+    elementos = int(10)
     X = np.arange(elementos, dtype=np.float32)
     Y = np.empty_like(X)
 
@@ -35,13 +34,13 @@ def main():
     kernel.set_args(bufferX, bufferY)
     global_size = (elementos,)
     local_size = None
-    fila.enqueue_nd_range_kernel(kernel, global_size, local_size)
+    cl.enqueue_nd_range_kernel(fila, kernel, global_size, local_size)
     fila.finish()
     cl.enqueue_copy(fila, src=bufferY, dest=Y).wait()
 
     # Impressão do resultado
     for i in range(elementos):
-        print('[{}]'.format(Y[i]), end=' ')
+        print('[{}]'.format(Y[i]), end='\n')
     print()
 
 if __name__ == "__main__":
