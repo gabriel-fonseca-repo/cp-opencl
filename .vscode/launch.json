@@ -24,6 +24,15 @@
 					"ignoreFailures": true
 				}
 			]
+		},
+		{
+			"name": "Main Py",
+			"type": "python",
+			"request": "launch",
+			"program": "main.py",
+			"console": "integratedTerminal",
+			"justMyCode": true,
+			"args": ["5"]
 		}
 	]
 }
